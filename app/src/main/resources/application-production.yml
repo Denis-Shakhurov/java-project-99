@@ -1,6 +1,4 @@
 spring:
-  jpa:
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
   datasource:
     driver-class-name: org.postgresql.Driver
     url: ${JDBC_CONNECTION_STRING}
