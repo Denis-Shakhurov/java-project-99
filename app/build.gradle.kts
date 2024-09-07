@@ -12,7 +12,6 @@ version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
-    maven { url = uri("https://repo.spring.io/snapshot") }
 }
 
 dependencies {
@@ -21,7 +20,7 @@ dependencies {
 
     runtimeOnly("com.h2database:h2")
     implementation("org.postgresql:postgresql:42.7.3")
-    
+
     implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-devtools")
@@ -34,17 +33,15 @@ dependencies {
     implementation("org.instancio:instancio-junit:3.3.0")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("net.javacrumbs.json-unit:json-unit-assertj:3.2.2")
 // Понадобится когда мы начнем работать с аутентификацией
-    testImplementation("org.springframework.security:spring-security-test")
 
     implementation("org.mapstruct:mapstruct:1.5.5.Final")
     annotationProcessor("org.mapstruct:mapstruct-processor:1.5.5.Final")
 
-    implementation("org.springframework.boot:spring-boot-starter-security")
-    implementation("org.springframework.boot:spring-boot-starter-oauth2-resource-server")
-    testImplementation("org.springframework.security:spring-security-test")
+    //implementation("org.springframework.boot:spring-boot-starter-security")
+    //implementation("org.springframework.boot:spring-boot-starter-oauth2-resource-server")
+    //testImplementation("org.springframework.security:spring-security-test")
 }
 
 tasks.test {
