@@ -1,0 +1,5 @@
+spring:
+  datasource:
+    url: ${JDBC_CONNECTION_STRING}
+    username: ${JDBC_USERNAME}
+    password: ${JDBC_PASSWORD}
