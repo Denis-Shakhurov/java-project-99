@@ -1,6 +1,6 @@
 spring:
   datasource:
+    url: ${JDBC_DATABASE_URL}
     driver-class-name: org.postgresql.Driver
-    url: ${JDBC_CONNECTION_STRING}
-    username: ${JDBC_USERNAME}
-    password: ${JDBC_PASSWORD}
+    username: ${USERNAME}
+    password: ${PASSWORD}
