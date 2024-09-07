@@ -12,6 +12,7 @@ version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
+    maven { url = uri("https://repo.spring.io/snapshot") }
 }
 
 dependencies {
@@ -19,6 +20,8 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter")
 
     runtimeOnly("com.h2database:h2")
+    implementation("org.postgresql:postgresql:42.7.3")
+    
     implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-devtools")
