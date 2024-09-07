@@ -4,3 +4,4 @@ spring:
     url: ${JDBC_CONNECTION_STRING}
     username: ${JDBC_USERNAME}
     password: ${JDBC_PASSWORD}
+  database-platform: org.hibernate.dialect.MySQLDialect
