@@ -5,10 +5,10 @@ spring:
     generate-ddl: true
     show-sql: true
     open-in-view: false
-    output:
-      ansi:
-        enabled: always
     hibernate:
       ddl-auto: update
+  output:
+    ansi:
+      enabled: always
   profiles:
     active: development

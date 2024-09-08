@@ -1,4 +1,13 @@
 spring:
+  application:
+    name: app
+  jpa:
+    generate-ddl: true
+    show-sql: true
+    open-in-view: false
+  output:
+    ansi:
+      enabled: always
   datasource:
     url: jdbc:h2:mem:devDB
     driver-class-name: org.h2.Driver

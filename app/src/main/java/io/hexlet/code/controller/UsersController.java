@@ -3,6 +3,7 @@ package io.hexlet.code.controller;
 import io.hexlet.code.dto.UserCreateDTO;
 import io.hexlet.code.dto.UserDTO;
 import io.hexlet.code.dto.UserUpdateDTO;
+import io.hexlet.code.exception.ResourceNotFoundException;
 import io.hexlet.code.mapper.UserMapper;
 import io.hexlet.code.repository.UserRepository;
 import jakarta.validation.Valid;
@@ -40,7 +41,8 @@ public class UsersController {
 
     @GetMapping(path = "/{id}")
     public UserDTO show(@PathVariable Long id) {
-        var user = userRepository.findById(id).get();
+        var user = userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Not found"));
         return userMapper.map(user);
     }
 
@@ -53,8 +55,9 @@ public class UsersController {
     }
 
     @PutMapping(path = "/{id}")
-    public UserDTO update(@RequestBody UserUpdateDTO dto, @PathVariable Long id) {
-        var user = userRepository.findById(id).get();
+    public UserDTO update(@Valid @RequestBody UserUpdateDTO dto, @PathVariable Long id) {
+        var user = userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Not found"));
         userMapper.update(dto, user);
         userRepository.save(user);
         return userMapper.map(user);

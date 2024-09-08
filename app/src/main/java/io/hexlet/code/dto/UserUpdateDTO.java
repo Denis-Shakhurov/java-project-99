@@ -3,14 +3,12 @@ package io.hexlet.code.dto;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 @Getter
 @Setter
-@AllArgsConstructor
 public class UserUpdateDTO {
 
     @NotNull
