@@ -1,13 +1,18 @@
 package io.hexlet.code.component;
 
+import io.hexlet.code.dto.TaskStatusCreateDTO;
 import io.hexlet.code.model.User;
+import io.hexlet.code.repository.TaskStatusRepository;
 import io.hexlet.code.repository.UserRepository;
 import io.hexlet.code.service.CustomUserDetailsService;
+import io.hexlet.code.service.TaskStatusService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
+
+import java.util.Map;
 
 @Component
 @AllArgsConstructor
@@ -17,7 +22,13 @@ public class DataInitializer implements ApplicationRunner {
     private UserRepository userRepository;
 
     @Autowired
-    private CustomUserDetailsService detailsService;
+    private TaskStatusRepository taskStatusRepository;
+
+    @Autowired
+    private CustomUserDetailsService userDetailsService;
+
+    @Autowired
+    private TaskStatusService taskStatusService;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -25,6 +36,15 @@ public class DataInitializer implements ApplicationRunner {
         var userData = new User();
         userData.setEmail(email);
         userData.setPasswordDigest("qwerty");
-        detailsService.createUser(userData);
+        userDetailsService.createUser(userData);
+
+        Map<String, String> taskStatuses = Map.of(
+                "Draft", "draft",
+                "toReview", "to_review",
+                "toBeFixed", "to_be_fixed",
+                "toPublish", "to_publish",
+                "Published", "published"
+        );
+        taskStatuses.forEach((key, value) -> taskStatusService.create(new TaskStatusCreateDTO(key, value)));
     }
 }

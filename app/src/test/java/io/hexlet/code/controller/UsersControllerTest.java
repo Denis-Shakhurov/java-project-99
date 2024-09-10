@@ -2,15 +2,14 @@ package io.hexlet.code.controller;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.hexlet.code.controller.util.ModelGenerator;
 import io.hexlet.code.dto.UserCreateDTO;
 import io.hexlet.code.dto.UserDTO;
 import io.hexlet.code.mapper.UserMapper;
 import io.hexlet.code.model.User;
 import io.hexlet.code.repository.UserRepository;
-import net.datafaker.Faker;
 import org.assertj.core.api.Assertions;
 import org.instancio.Instancio;
-import org.instancio.Select;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,7 +56,7 @@ public class UsersControllerTest {
     private ObjectMapper om;
 
     @Autowired
-    private Faker faker;
+    private ModelGenerator modelGenerator;
 
     private JwtRequestPostProcessor token;
     private User testUser;
@@ -72,13 +71,7 @@ public class UsersControllerTest {
 
         token = jwt().jwt(builder -> builder.subject("hexlet@example.com"));
 
-        testUser = Instancio.of(User.class)
-                .ignore(Select.field(User::getId))
-                .supply(Select.field(User::getEmail), () -> faker.internet().emailAddress())
-                .supply(Select.field(User::getFirstName), () -> faker.name().firstName())
-                .supply(Select.field(User::getLastName), () -> faker.name().lastName())
-                .supply(Select.field(User::getPasswordDigest), () -> faker.internet().password())
-                .create();
+        testUser = Instancio.of(modelGenerator.getUserModel()).create();
 
         userRepository.save(testUser);
     }
@@ -139,7 +132,6 @@ public class UsersControllerTest {
 
     @Test
     public void testUpdate() throws Exception {
-        userRepository.save(testUser);
 
         var data = new HashMap<>();
         data.put("firstName", "Denis");
@@ -157,7 +149,6 @@ public class UsersControllerTest {
 
     @Test
     public void testDestroy() throws Exception {
-        userRepository.save(testUser);
 
         var request = delete("/api/users/" + testUser.getId()).with(jwt());
         mockMvc.perform(request)
