@@ -6,9 +6,11 @@ import io.hexlet.code.dto.UserUpdateDTO;
 import io.hexlet.code.exception.ResourceNotFoundException;
 import io.hexlet.code.mapper.UserMapper;
 import io.hexlet.code.repository.UserRepository;
+import io.hexlet.code.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,41 +33,36 @@ public class UsersController {
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private UserService userService;
+
     @GetMapping(path = "")
-    public List<UserDTO> index() {
-        var users = userRepository.findAll();
-        return users.stream()
-                .map(userMapper::map)
-                .toList();
+    public ResponseEntity<List<UserDTO>> index() {
+        var users = userService.getAll();
+        return ResponseEntity.ok()
+                .header("X-Total-Count", String.valueOf(users))
+                .body(users);
     }
 
     @GetMapping(path = "/{id}")
     public UserDTO show(@PathVariable Long id) {
-        var user = userRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Not found"));
-        return userMapper.map(user);
+        return userService.show(id);
     }
 
     @PostMapping(path = "")
     @ResponseStatus(HttpStatus.CREATED)
     public UserDTO create(@Valid @RequestBody UserCreateDTO dto) {
-        var user = userMapper.map(dto);
-        userRepository.save(user);
-        return userMapper.map(user);
+        return userService.create(dto);
     }
 
     @PutMapping(path = "/{id}")
     public UserDTO update(@Valid @RequestBody UserUpdateDTO dto, @PathVariable Long id) {
-        var user = userRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Not found"));
-        userMapper.update(dto, user);
-        userRepository.save(user);
-        return userMapper.map(user);
+        return userService.update(dto, id);
     }
 
     @DeleteMapping(path = "/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void destroy(@PathVariable Long id) {
-        userRepository.deleteById(id);
+        userService.delete(id);
     }
 }
