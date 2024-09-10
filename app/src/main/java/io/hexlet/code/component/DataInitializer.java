@@ -45,6 +45,12 @@ public class DataInitializer implements ApplicationRunner {
                 "toPublish", "to_publish",
                 "Published", "published"
         );
-        taskStatuses.forEach((key, value) -> taskStatusService.create(new TaskStatusCreateDTO(key, value)));
+        //taskStatuses.forEach((key, value) -> taskStatusService.create(new TaskStatusCreateDTO(key, value)));
+        var currentTaskStatusesSlug = taskStatusRepository.findAll().stream()
+                .map(t -> t.getSlug())
+                .toList();
+        taskStatuses.keySet().stream()
+                .filter(k -> !currentTaskStatusesSlug.contains(taskStatuses.get(k)))
+                .forEach(k -> taskStatusService.create(new TaskStatusCreateDTO(k, taskStatuses.get(k))));
     }
 }

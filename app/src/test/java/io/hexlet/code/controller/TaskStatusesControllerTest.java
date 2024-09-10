@@ -128,7 +128,7 @@ public class TaskStatusesControllerTest {
     @Test
     public void testUpdate() throws Exception {
         var data = new HashMap<>();
-        data.put("name", "Published");
+        data.put("name", "Debug");
 
         var request = put("/api/task_statuses/" + testTaskStatus.getId())
                 .with(token)
@@ -139,7 +139,7 @@ public class TaskStatusesControllerTest {
                 .andExpect(status().isOk());
 
         var taskStatus = taskStatusRepository.findById(testTaskStatus.getId()).get();
-        assertThat(taskStatus.getName()).isEqualTo(("Published"));
+        assertThat(taskStatus.getName()).isEqualTo(("Debug"));
     }
 
     @Test
