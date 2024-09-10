@@ -3,7 +3,6 @@ package io.hexlet.code.controller;
 import io.hexlet.code.dto.UserCreateDTO;
 import io.hexlet.code.dto.UserDTO;
 import io.hexlet.code.dto.UserUpdateDTO;
-import io.hexlet.code.exception.ResourceNotFoundException;
 import io.hexlet.code.mapper.UserMapper;
 import io.hexlet.code.repository.UserRepository;
 import io.hexlet.code.service.UserService;
