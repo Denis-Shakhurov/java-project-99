@@ -37,17 +37,17 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http,
                                                    HandlerMappingIntrospector introspector) throws Exception {
         // По умолчанию все запрещено
-        MvcRequestMatcher.Builder mvcMatcherBuilder = new MvcRequestMatcher.Builder(introspector);
+        //MvcRequestMatcher.Builder mvcMatcherBuilder = new MvcRequestMatcher.Builder(introspector);
         return http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         // Разрешаем доступ только к /login, чтобы аутентифицироваться и получить токен
-                        .requestMatchers(mvcMatcherBuilder.pattern("/")).permitAll()
-                        .requestMatchers(mvcMatcherBuilder.pattern("/index.html")).permitAll()
-                        .requestMatchers(mvcMatcherBuilder.pattern("/assets/**")).permitAll()
-                        .requestMatchers(mvcMatcherBuilder.pattern("/welcome")).permitAll()
-                        .requestMatchers(mvcMatcherBuilder.pattern("/api/users")).permitAll()
-                        .requestMatchers(mvcMatcherBuilder.pattern("/api/login")).permitAll()
+                        .requestMatchers("/").permitAll()
+                        .requestMatchers("/index.html").permitAll()
+                        .requestMatchers("/assets/**").permitAll()
+                        .requestMatchers("/welcome").permitAll()
+                        .requestMatchers("/api/users").permitAll()
+                        .requestMatchers("/api/login").permitAll()
                         .anyRequest().authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .oauth2ResourceServer((rs) -> rs.jwt((jwt) -> jwt.decoder(jwtDecoder)))
