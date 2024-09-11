@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.hexlet.code.controller.util.ModelGenerator;
 import io.hexlet.code.dto.TaskStatusCreateDTO;
 import io.hexlet.code.dto.TaskStatusDTO;
+import io.hexlet.code.dto.TaskStatusUpdateDTO;
 import io.hexlet.code.mapper.TaskStatusMapper;
 import io.hexlet.code.model.TaskStatus;
 import io.hexlet.code.repository.TaskStatusRepository;
@@ -12,6 +13,7 @@ import org.assertj.core.api.Assertions;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openapitools.jackson.nullable.JsonNullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,13 +22,11 @@ import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequ
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.context.WebApplicationContext;
 
-import java.util.HashMap;
 import java.util.List;
 
 import static net.javacrumbs.jsonunit.assertj.JsonAssertions.assertThatJson;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.jwt;
-import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -125,8 +125,8 @@ public class TaskStatusesControllerTest {
 
     @Test
     public void testUpdate() throws Exception {
-        var data = new HashMap<>();
-        data.put("name", "Debug");
+        var data = new TaskStatusUpdateDTO();
+        data.setName(JsonNullable.of("Debug"));
 
         var request = put("/api/task_statuses/" + testTaskStatus.getId())
                 .with(token)
