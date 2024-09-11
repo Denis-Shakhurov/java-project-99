@@ -18,10 +18,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.JwtRequestPostProcessor;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.List;
 
@@ -64,10 +62,10 @@ public class TaskStatusesControllerTest {
     @BeforeEach
     public void setUp() {
 
-        mockMvc = MockMvcBuilders.webAppContextSetup(wac)
+        /*mockMvc = MockMvcBuilders.webAppContextSetup(wac)
                 .defaultResponseCharacterEncoding(StandardCharsets.UTF_8)
                 .apply(springSecurity())
-                .build();
+                .build();*/
 
         token = jwt().jwt(builder -> builder.subject("hexlet@example.com"));
 
