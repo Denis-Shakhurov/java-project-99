@@ -3,8 +3,6 @@ package io.hexlet.code.controller;
 import io.hexlet.code.dto.UserCreateDTO;
 import io.hexlet.code.dto.UserDTO;
 import io.hexlet.code.dto.UserUpdateDTO;
-import io.hexlet.code.mapper.UserMapper;
-import io.hexlet.code.repository.UserRepository;
 import io.hexlet.code.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,12 +23,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/users")
 public class UsersController {
-
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private UserMapper userMapper;
 
     @Autowired
     private UserService userService;

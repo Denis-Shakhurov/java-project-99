@@ -1,5 +1,6 @@
 package io.hexlet.code.controller.util;
 
+import io.hexlet.code.model.Task;
 import io.hexlet.code.model.TaskStatus;
 import io.hexlet.code.model.User;
 import jakarta.annotation.PostConstruct;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Component;
 @Getter
 @Component
 public class ModelGenerator {
+    private Model<Task> taskModel;
     private Model<User> userModel;
     private Model<TaskStatus> taskStatusModel;
 
@@ -34,6 +36,14 @@ public class ModelGenerator {
                 .ignore(Select.field(TaskStatus::getId))
                 .supply(Select.field(TaskStatus::getName), () -> faker.lorem().word())
                 .supply(Select.field(TaskStatus::getSlug), () -> faker.lorem().word())
+                .toModel();
+
+        taskModel = Instancio.of(Task.class)
+                .ignore(Select.field(Task::getId))
+                .ignore(Select.field(Task::getAssignee))
+                .supply(Select.field(Task::getName), () -> faker.name().name())
+                .supply(Select.field(Task::getIndex), () -> faker.number().randomDigit())
+                .ignore(Select.field(Task::getTaskStatus))
                 .toModel();
     }
 }
