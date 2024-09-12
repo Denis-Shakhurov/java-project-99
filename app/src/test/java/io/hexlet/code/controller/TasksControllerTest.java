@@ -121,7 +121,7 @@ public class TasksControllerTest {
         var body = response.getResponse().getContentAsString();
 
         assertThatJson(body).and(
-                v -> v.node("name").isEqualTo(testTask.getName()),
+                v -> v.node("title").isEqualTo(testTask.getName()),
                 v -> v.node("index").isEqualTo(testTask.getIndex())
         );
     }
@@ -129,11 +129,11 @@ public class TasksControllerTest {
     @Test
     public void testCreate() throws Exception {
         var data = new TaskCreateDTO();
-        data.setName("Update");
-        data.setTaskStatusSlug("published");
+        data.setTitle("Update");
+        data.setStatus("published");
         data.setAssigneeId(1l);
         data.setIndex(2);
-        data.setDescription("new task");
+        data.setContent("new task");
 
         var request = post("/api/tasks")
                 .with(token)
@@ -146,7 +146,7 @@ public class TasksControllerTest {
     @Test
     public void testUpdate() throws Exception {
         var data = new TaskUpdateDTO();
-        data.setName(JsonNullable.of("Update"));
+        data.setTitle(JsonNullable.of("Update"));
 
         var request = put("/api/tasks/" + testTask.getId())
                 .with(token)

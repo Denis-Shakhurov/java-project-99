@@ -43,7 +43,7 @@ public class TaskService {
 
     public TaskDTO create(TaskCreateDTO dataDTO) {
         var task = taskMapper.map(dataDTO);
-        var taskStatus = taskStatusRepository.findBySlug(dataDTO.getTaskStatusSlug())
+        var taskStatus = taskStatusRepository.findBySlug(dataDTO.getStatus())
                 .orElseThrow(() -> new ResourceNotFoundException("TaskStatus not found"));
         var assignee = userRepository.findById(dataDTO.getAssigneeId())
                 .orElseThrow(() -> new ResourceNotFoundException("User not found"));

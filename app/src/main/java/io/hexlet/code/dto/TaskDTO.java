@@ -1,6 +1,7 @@
 package io.hexlet.code.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -16,14 +17,15 @@ public class TaskDTO {
 
     @NotNull
     @Size(min = 1)
-    private String name;
+    private String title;
 
     private int index;
 
-    private String description;
+    private String content;
 
-    private String taskStatusSlug;
+    private String status;
 
+    @JsonProperty("assignee_id")
     private Long assigneeId;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")

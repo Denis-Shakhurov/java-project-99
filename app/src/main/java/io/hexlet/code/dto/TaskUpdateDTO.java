@@ -1,5 +1,6 @@
 package io.hexlet.code.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -15,14 +16,15 @@ import org.openapitools.jackson.nullable.JsonNullable;
 public class TaskUpdateDTO {
     @NotNull
     @Size(min = 1)
-    private JsonNullable<String> name;
+    private JsonNullable<String> title;
 
     private JsonNullable<Integer> index;
 
-    private JsonNullable<String> description;
+    private JsonNullable<String> content;
 
     @NotNull
-    private JsonNullable<String> taskStatusSlug;
+    private JsonNullable<String> status;
 
+    @JsonProperty("assignee_id")
     private JsonNullable<Long> assigneeId;
 }
