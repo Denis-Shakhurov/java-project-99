@@ -124,6 +124,18 @@ public class TasksControllerTest {
     }
 
     @Test
+    public void testFilteredIndex() throws Exception {
+        var result = mockMvc.perform(get("/api/tasks?status=" + testTaskStatus.getSlug())
+                        .with(token))
+                .andExpect(status().isOk())
+                .andReturn();
+        var body = result.getResponse().getContentAsString();
+        assertThatJson(body)
+                .isArray()
+                .hasSize(1);
+    }
+
+    @Test
     public void testShow() throws Exception {
         var response = mockMvc.perform(get("/api/tasks/" + testTask.getId()).with(jwt()))
                 .andExpect(status().isOk())
@@ -142,10 +154,6 @@ public class TasksControllerTest {
         var data = new TaskCreateDTO();
         data.setTitle("Update");
         data.setSlug(taskStatus.getSlug());
-        //data.setAssigneeId(1l);
-        //data.setIndex(2);
-        //data.setContent("new task");
-        //data.setLabelIds(new ArrayList<>(List.of(testLabel.getId())));
 
         var request = post("/api/tasks")
                 .with(token)

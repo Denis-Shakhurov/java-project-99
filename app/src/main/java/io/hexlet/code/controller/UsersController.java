@@ -31,7 +31,7 @@ public class UsersController {
     public ResponseEntity<List<UserDTO>> index() {
         var users = userService.getAll();
         return ResponseEntity.ok()
-                .header("X-Total-Count", String.valueOf(users))
+                .header("X-Total-Count", String.valueOf(users.size()))
                 .body(users);
     }
 

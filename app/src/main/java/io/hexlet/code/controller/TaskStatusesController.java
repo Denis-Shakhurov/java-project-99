@@ -31,7 +31,7 @@ public class TaskStatusesController {
     public ResponseEntity<List<TaskStatusDTO>> index() {
         var taskStatuses = taskStatusService.getAll();
         return ResponseEntity.ok()
-                .header("X-Total-Count", String.valueOf(taskStatuses))
+                .header("X-Total-Count", String.valueOf(taskStatuses.size()))
                 .body(taskStatuses);
     }
 
