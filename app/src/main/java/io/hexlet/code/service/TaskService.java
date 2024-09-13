@@ -8,12 +8,14 @@ import io.hexlet.code.mapper.TaskMapper;
 import io.hexlet.code.repository.TaskRepository;
 import io.hexlet.code.repository.TaskStatusRepository;
 import io.hexlet.code.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class TaskService {
 
     @Autowired
@@ -43,12 +45,6 @@ public class TaskService {
 
     public TaskDTO create(TaskCreateDTO dataDTO) {
         var task = taskMapper.map(dataDTO);
-        var taskStatus = taskStatusRepository.findBySlug(dataDTO.getStatus())
-                .orElseThrow(() -> new ResourceNotFoundException("TaskStatus not found"));
-        var assignee = userRepository.findById(dataDTO.getAssigneeId())
-                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
-        task.setTaskStatus(taskStatus);
-        task.setAssignee(assignee);
         taskRepository.save(task);
         return taskMapper.map(task);
     }
@@ -62,10 +58,6 @@ public class TaskService {
     }
 
     public void delete(Long id) {
-        var task = taskRepository.findById(id)
-                        .orElseThrow(() -> new ResourceNotFoundException("Task not found"));
-        var user = task.getAssignee();
-        user.removeTask(task);
         taskRepository.deleteById(id);
     }
 }

@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.openapitools.jackson.nullable.JsonNullable;
 
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -23,8 +25,11 @@ public class TaskUpdateDTO {
     private JsonNullable<String> content;
 
     @NotNull
-    private JsonNullable<String> status;
+    @JsonProperty("status")
+    private JsonNullable<String> slug;
 
     @JsonProperty("assignee_id")
     private JsonNullable<Long> assigneeId;
+
+    private JsonNullable<List<Long>> labelIds;
 }

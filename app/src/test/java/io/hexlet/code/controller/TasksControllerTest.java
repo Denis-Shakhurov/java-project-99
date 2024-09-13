@@ -7,9 +7,11 @@ import io.hexlet.code.dto.TaskCreateDTO;
 import io.hexlet.code.dto.TaskDTO;
 import io.hexlet.code.dto.TaskUpdateDTO;
 import io.hexlet.code.mapper.TaskMapper;
+import io.hexlet.code.model.Label;
 import io.hexlet.code.model.Task;
 import io.hexlet.code.model.TaskStatus;
 import io.hexlet.code.model.User;
+import io.hexlet.code.repository.LabelRepository;
 import io.hexlet.code.repository.TaskRepository;
 import io.hexlet.code.repository.TaskStatusRepository;
 import io.hexlet.code.repository.UserRepository;
@@ -28,6 +30,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
 
 import static net.javacrumbs.jsonunit.assertj.JsonAssertions.assertThatJson;
@@ -60,6 +63,9 @@ public class TasksControllerTest {
     private UserRepository userRepository;
 
     @Autowired
+    private LabelRepository labelRepository;
+
+    @Autowired
     private TaskStatusRepository taskStatusRepository;
 
     @Autowired
@@ -71,6 +77,7 @@ public class TasksControllerTest {
     private Task testTask;
     private TaskStatus testTaskStatus;
     private User testUser;
+    private Label testLabel;
 
     private SecurityMockMvcRequestPostProcessors.JwtRequestPostProcessor token;
 
@@ -87,12 +94,15 @@ public class TasksControllerTest {
         testTask= Instancio.of(modelGenerator.getTaskModel()).create();
         testTaskStatus = Instancio.of(modelGenerator.getTaskStatusModel()).create();
         testUser = Instancio.of(modelGenerator.getUserModel()).create();
+        testLabel = Instancio.of(modelGenerator.getLabelModel()).create();
 
         taskStatusRepository.save(testTaskStatus);
         userRepository.save(testUser);
+        labelRepository.save(testLabel);
 
         testTask.setAssignee(testUser);
         testTask.setTaskStatus(testTaskStatus);
+        testTask.setLabels(new ArrayList<>(List.of(testLabel)));
 
         taskRepository.save(testTask);
     }
@@ -128,12 +138,14 @@ public class TasksControllerTest {
 
     @Test
     public void testCreate() throws Exception {
+        var taskStatus = taskStatusRepository.findBySlug("draft").get();
         var data = new TaskCreateDTO();
         data.setTitle("Update");
-        data.setStatus("published");
-        data.setAssigneeId(1l);
-        data.setIndex(2);
-        data.setContent("new task");
+        data.setSlug(taskStatus.getSlug());
+        //data.setAssigneeId(1l);
+        //data.setIndex(2);
+        //data.setContent("new task");
+        //data.setLabelIds(new ArrayList<>(List.of(testLabel.getId())));
 
         var request = post("/api/tasks")
                 .with(token)

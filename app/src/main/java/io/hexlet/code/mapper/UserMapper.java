@@ -28,12 +28,11 @@ public abstract class UserMapper {
     @Mapping(target = "passwordDigest", source = "password")
     public abstract User map(UserCreateDTO model);
 
-    @Mapping(target = "username", source = "email")
     public abstract UserDTO map(User model);
 
-    @Mapping(target = "email", source = "username")
     public abstract User map(UserDTO model);
 
+    @Mapping(target = "passwordDigest", source = "password")
     public abstract void update(UserUpdateDTO update, @MappingTarget User destination);
 
     @BeforeMapping

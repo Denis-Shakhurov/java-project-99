@@ -48,10 +48,6 @@ public class UserService {
     }
 
     public void delete(Long id) {
-        var user = userRepository.findById(id)
-                        .orElseThrow(() -> new ResourceNotFoundException("User not found"));
-        if (user.getTasks().isEmpty()) {
-            userRepository.deleteById(id);
-        }
+       userRepository.deleteById(id);
     }
 }
