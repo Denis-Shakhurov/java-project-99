@@ -21,13 +21,13 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/labels")
+@RequestMapping("/api")
 public class LabelsController {
 
     @Autowired
     private LabelService labelService;
 
-    @GetMapping(path = "")
+    @GetMapping(path = "/labels")
     public ResponseEntity<List<LabelDTO>> index() {
         var labels = labelService.getAll();
         return ResponseEntity.ok()
@@ -35,23 +35,23 @@ public class LabelsController {
                 .body(labels);
     }
 
-    @GetMapping(path = "/{id}")
+    @GetMapping(path = "/labels/{id}")
     public LabelDTO show(@PathVariable Long id) {
         return labelService.show(id);
     }
 
-    @PostMapping(path = "")
+    @PostMapping(path = "/labels")
     @ResponseStatus(HttpStatus.CREATED)
     public LabelDTO create(@Valid @RequestBody LabelCreateDTO dataDTO) {
         return labelService.create(dataDTO);
     }
 
-    @PutMapping(path = "/{id}")
+    @PutMapping(path = "/labels/{id}")
     public LabelDTO update(@Valid @RequestBody LabelUpdateDTO dataDTO, @PathVariable Long id) {
         return labelService.update(dataDTO, id);
     }
 
-    @DeleteMapping(path = "/{id}")
+    @DeleteMapping(path = "/labels/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void destroy(@PathVariable Long id) {
         labelService.delete(id);

@@ -21,13 +21,13 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/task_statuses")
+@RequestMapping("/api")
 public class TaskStatusesController {
 
     @Autowired
     private TaskStatusService taskStatusService;
 
-    @GetMapping(path = "")
+    @GetMapping(path = "/task_statuses")
     public ResponseEntity<List<TaskStatusDTO>> index() {
         var taskStatuses = taskStatusService.getAll();
         return ResponseEntity.ok()
@@ -35,23 +35,23 @@ public class TaskStatusesController {
                 .body(taskStatuses);
     }
 
-    @GetMapping(path = "/{id}")
+    @GetMapping(path = "/task_statuses/{id}")
     public TaskStatusDTO show(@PathVariable Long id) {
         return taskStatusService.show(id);
     }
 
-    @PostMapping(path = "")
+    @PostMapping(path = "/task_statuses")
     @ResponseStatus(HttpStatus.CREATED)
     public TaskStatusDTO create(@Valid @RequestBody TaskStatusCreateDTO dataDTO) {
         return taskStatusService.create(dataDTO);
     }
 
-    @PutMapping(path = "/{id}")
+    @PutMapping(path = "/task_statuses/{id}")
     public TaskStatusDTO update(@Valid @RequestBody TaskStatusUpdateDTO dataDTO, @PathVariable Long id) {
         return taskStatusService.update(dataDTO, id);
     }
 
-    @DeleteMapping(path = "/{id}")
+    @DeleteMapping(path = "/task_statuses/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void destroy(@PathVariable Long id) {
         taskStatusService.delete(id);

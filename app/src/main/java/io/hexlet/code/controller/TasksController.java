@@ -21,13 +21,13 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/tasks")
+@RequestMapping("/api")
 public class TasksController {
 
     @Autowired
     private TaskService taskService;
 
-    @GetMapping(path = "")
+    @GetMapping(path = "/tasks")
     public ResponseEntity<List<TaskDTO>> index() {
         var tasks = taskService.getAll();
         return ResponseEntity.ok()
@@ -35,23 +35,23 @@ public class TasksController {
                 .body(tasks);
     }
 
-    @GetMapping(path = "/{id}")
+    @GetMapping(path = "/tasks/{id}")
     public TaskDTO show(@PathVariable Long id) {
         return taskService.show(id);
     }
 
-    @PostMapping(path = "")
+    @PostMapping(path = "/tasks")
     @ResponseStatus(HttpStatus.CREATED)
     public TaskDTO create(@Valid @RequestBody TaskCreateDTO dataDTO) {
         return taskService.create(dataDTO);
     }
 
-    @PutMapping(path = "/{id}")
+    @PutMapping(path = "/tasks/{id}")
     public TaskDTO update(@Valid @RequestBody TaskUpdateDTO dataDTO, @PathVariable Long id) {
         return taskService.update(dataDTO, id);
     }
 
-    @DeleteMapping(path = "/{id}")
+    @DeleteMapping(path = "/tasks/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void destroy(@PathVariable Long id) {
         taskService.delete(id);

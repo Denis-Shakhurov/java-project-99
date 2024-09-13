@@ -32,13 +32,16 @@ dependencies {
 
     implementation("org.openapitools:jackson-databind-nullable:0.2.6")
 
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-api:2.6.0")
+    implementation("org.springdoc:springdoc-openapi-starter-webflux-api:2.6.0")
+
     implementation("net.datafaker:datafaker:2.0.1")
     implementation("org.instancio:instancio-junit:3.3.0")
 
     testImplementation("org.springframework.security:spring-security-test")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("net.javacrumbs.json-unit:json-unit-assertj:3.2.2")
-// Понадобится когда мы начнем работать с аутентификацией
 
     implementation("org.mapstruct:mapstruct:1.5.5.Final")
     annotationProcessor("org.mapstruct:mapstruct-processor:1.5.5.Final")

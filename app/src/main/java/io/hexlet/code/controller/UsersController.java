@@ -21,13 +21,13 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api")
 public class UsersController {
 
     @Autowired
     private UserService userService;
 
-    @GetMapping(path = "")
+    @GetMapping(path = "/users")
     public ResponseEntity<List<UserDTO>> index() {
         var users = userService.getAll();
         return ResponseEntity.ok()
@@ -35,23 +35,23 @@ public class UsersController {
                 .body(users);
     }
 
-    @GetMapping(path = "/{id}")
+    @GetMapping(path = "/users/{id}")
     public UserDTO show(@PathVariable Long id) {
         return userService.show(id);
     }
 
-    @PostMapping(path = "")
+    @PostMapping(path = "/users")
     @ResponseStatus(HttpStatus.CREATED)
     public UserDTO create(@Valid @RequestBody UserCreateDTO dto) {
         return userService.create(dto);
     }
 
-    @PutMapping(path = "/{id}")
+    @PutMapping(path = "/users/{id}")
     public UserDTO update(@Valid @RequestBody UserUpdateDTO dto, @PathVariable Long id) {
         return userService.update(dto, id);
     }
 
-    @DeleteMapping(path = "/{id}")
+    @DeleteMapping(path = "/users/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void destroy(@PathVariable Long id) {
         userService.delete(id);
