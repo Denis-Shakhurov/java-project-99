@@ -62,7 +62,7 @@ public abstract class TaskMapper {
     public abstract void update(TaskUpdateDTO dto, @MappingTarget Task model);
 
     public List<Long> labelsToLong(List<Label> labels) {
-        if (labels == null){
+        if (labels == null) {
             return new ArrayList<>();
         } else {
             return labels.stream()
