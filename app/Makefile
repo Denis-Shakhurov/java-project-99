@@ -1,18 +1,22 @@
-.DEFAULT_GOAL := build
+dev:
+	./gradlew bootRun
+
+clean:
+	./gradlew clean
+
+build:
+	./gradlew clean build
 
 install:
 	./gradlew installBootDist
 
-start:
-	./gradlew bootRun
+lint:
+	./gradlew checkstyleMain
 
 test:
 	./gradlew test
 
 report:
 	./gradlew jacocoTestReport
-
-lint:
-	./gradlew checkstyleMain
 
 .PHONY: build
