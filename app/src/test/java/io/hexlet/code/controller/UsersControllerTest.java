@@ -132,11 +132,11 @@ public class UsersControllerTest {
 
     @Test
     public void testUpdate() throws Exception {
-
+        var currentToken = jwt().jwt(builder -> builder.subject(testUser.getEmail()));
         var data = new HashMap<>();
         data.put("firstName", "Denis");
 
-        var request = put("/api/users/" + testUser.getId()).with(jwt())
+        var request = put("/api/users/" + testUser.getId()).with(currentToken)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(om.writeValueAsString(data));
 
@@ -149,8 +149,8 @@ public class UsersControllerTest {
 
     @Test
     public void testDestroy() throws Exception {
-
-        var request = delete("/api/users/" + testUser.getId()).with(jwt());
+        var currentToken = jwt().jwt(builder -> builder.subject(testUser.getEmail()));
+        var request = delete("/api/users/" + testUser.getId()).with(currentToken);
         mockMvc.perform(request)
                 .andExpect(status().isNoContent());
         assertThat(userRepository.existsById(testUser.getId())).isEqualTo(false);
