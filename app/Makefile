@@ -1,6 +1,11 @@
 .DEFAULT_GOAL := build
 
 setup:
+	npm install
+	./gradlew wrapper --gradle-version 8.7
+	./gradlew build
+
+setup:
 	./gradlew wrapper --gradle-version 8.5
 
 run-dist:
