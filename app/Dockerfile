@@ -1,9 +1,9 @@
 FROM gradle:8.7.0-jdk21
 
-WORKDIR /
+WORKDIR /app
 
-COPY / .
+COPY /app .
 
 RUN gradle installBootDist
 
-CMD ./build/install/app-boot/bin/app --spring.profiles.active=production
+CMD /app./build/install/app-boot/bin/app --spring.profiles.active=production
