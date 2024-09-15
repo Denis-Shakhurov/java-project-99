@@ -1,22 +1,24 @@
-dev:
-	./gradlew bootRun
+.DEFAULT_GOAL := build
 
-clean:
-	./gradlew clean
+setup:
+	./gradlew wrapper --gradle-version 8.5
 
-build:
-	./gradlew clean build
+run-dist:
+	./build/install/java-project-99/bin/java-project-99
 
 install:
 	./gradlew installBootDist
 
-lint:
-	./gradlew checkstyleMain
+run:
+	./gradlew bootRun
 
 test:
 	./gradlew test
 
 report:
 	./gradlew jacocoTestReport
+
+lint:
+	./gradlew checkstyleMain
 
 .PHONY: build
