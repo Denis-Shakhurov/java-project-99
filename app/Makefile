@@ -1,12 +1,9 @@
 .DEFAULT_GOAL := build
 
-setup:
-	./gradlew wrapper --gradle-version 8.5
+install:
+	./gradlew installBootDist
 
-run-dist:
-	./build/install/java-project-99/bin/java-project-99
-
-run:
+start:
 	./gradlew bootRun
 
 test:
