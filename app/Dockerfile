@@ -3,10 +3,10 @@ FROM gradle:8.7.0-jdk21
 WORKDIR /app
 
 COPY /app .
-COPY /app gradle gradle
-COPY /app build.gradle.kts .
-COPY /app settings.gradle.kts .
-COPY /app ./gradlew .
+#COPY /app gradle gradle
+#COPY /app build.gradle.kts .
+#COPY /app settings.gradle.kts .
+#COPY /app ./gradlew .
 
 RUN gradle installBootDist
 
