@@ -6,7 +6,7 @@ COPY /app .
 COPY /app gradle gradle
 COPY /app build.gradle.kts .
 COPY /app settings.gradle.kts .
-COPY /app gradlew .
+COPY /app ./gradlew .
 
 RUN gradle installBootDist
 
