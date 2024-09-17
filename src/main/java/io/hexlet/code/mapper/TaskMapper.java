@@ -63,13 +63,12 @@ public abstract class TaskMapper {
     public abstract void update(TaskUpdateDTO dto, @MappingTarget Task model);
 
     public Set<Long> labelsToLong(Set<Label> labels) {
-        if (labels == null) {
-            return new HashSet<>();
-        } else {
-            return labels.stream()
-                    .map(Label::getId)
-                    .collect(Collectors.toSet());
-        }
+        return labels == null
+                ? new HashSet<>()
+                : labels.stream()
+                .map(Label::getId)
+                .collect(Collectors.toSet());
+
     }
 
     public Set<Label> longToLabel(Set<Long> labelIds) {
