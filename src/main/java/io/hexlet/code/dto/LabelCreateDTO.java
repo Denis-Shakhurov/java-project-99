@@ -14,6 +14,6 @@ import lombok.Setter;
 public class LabelCreateDTO {
 
     @NotNull
-    @Size(min = 1, max = 1000)
+    @Size(min = 3, max = 1000)
     private String name;
 }

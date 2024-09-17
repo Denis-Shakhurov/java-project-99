@@ -153,7 +153,7 @@ public class TasksControllerTest {
     public void testCreate() throws Exception {
         var taskStatus = taskStatusRepository.findBySlug("draft").get();
         var data = new TaskCreateDTO();
-        data.setTitle("Update");
+        data.setTitle("New Task");
         data.setSlug(taskStatus.getSlug());
 
         var request = post("/api/tasks")

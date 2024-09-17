@@ -28,7 +28,7 @@ public class Label implements BaseEntity {
     private Long id;
 
     @Column(unique = true)
-    @Size(min = 1, max = 1000)
+    @Size(min = 3, max = 1000)
     private String name;
 
     @CreatedDate
