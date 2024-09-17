@@ -1,5 +1,6 @@
 package io.hexlet.code.dto;
 
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -15,6 +16,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 public class LabelUpdateDTO {
 
     @NotNull
+    @Column(unique = true)
     @Size(min = 1, max = 1000)
     private JsonNullable<String> name;
 }
