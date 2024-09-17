@@ -26,7 +26,6 @@ import java.time.LocalDate;
 public class TaskStatus implements BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
     private Long id;
 
     @NotNull
@@ -40,7 +39,4 @@ public class TaskStatus implements BaseEntity {
 
     @CreatedDate
     private LocalDate createdAt;
-
-    //@OneToMany(mappedBy = "taskStatus", cascade = CascadeType.MERGE, orphanRemoval = true, fetch = FetchType.EAGER)
-    //private List<Task> tasks = new ArrayList<>();
 }

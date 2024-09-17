@@ -1,7 +1,6 @@
 package io.hexlet.code.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,7 +15,6 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TaskUpdateDTO {
-    @NotNull
     @Size(min = 1)
     private JsonNullable<String> title;
 
@@ -24,9 +22,8 @@ public class TaskUpdateDTO {
 
     private JsonNullable<String> content;
 
-    @NotNull
     @JsonProperty("status")
-    private JsonNullable<String> slug;
+    private String slug;
 
     @JsonProperty("assignee_id")
     private JsonNullable<Long> assigneeId;
