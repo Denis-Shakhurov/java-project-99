@@ -7,11 +7,8 @@ import io.hexlet.code.dto.TaskUpdateDTO;
 import io.hexlet.code.exception.ResourceNotFoundException;
 import io.hexlet.code.mapper.TaskMapper;
 import io.hexlet.code.repository.TaskRepository;
-import io.hexlet.code.repository.TaskStatusRepository;
-import io.hexlet.code.repository.UserRepository;
 import io.hexlet.code.specification.TaskSpecification;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,20 +17,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TaskService {
 
-    @Autowired
-    private TaskRepository taskRepository;
-
-    @Autowired
-    private TaskStatusRepository taskStatusRepository;
-
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private TaskMapper taskMapper;
-
-    @Autowired
-    private TaskSpecification specBuilder;
+    private final TaskRepository taskRepository;
+    private final TaskMapper taskMapper;
+    private final TaskSpecification specBuilder;
 
     public List<TaskDTO> getAll(TaskParamDTO params) {
         var spec = specBuilder.build(params);

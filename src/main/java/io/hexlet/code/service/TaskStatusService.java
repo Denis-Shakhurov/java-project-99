@@ -5,24 +5,18 @@ import io.hexlet.code.dto.TaskStatusDTO;
 import io.hexlet.code.dto.TaskStatusUpdateDTO;
 import io.hexlet.code.exception.ResourceNotFoundException;
 import io.hexlet.code.mapper.TaskStatusMapper;
-import io.hexlet.code.repository.TaskRepository;
 import io.hexlet.code.repository.TaskStatusRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class TaskStatusService {
 
-    @Autowired
-    private TaskStatusRepository taskStatusRepository;
-
-    @Autowired
-    private TaskRepository taskRepository;
-
-    @Autowired
-    private TaskStatusMapper taskStatusMapper;
+    private final TaskStatusRepository taskStatusRepository;
+    private final TaskStatusMapper taskStatusMapper;
 
     public List<TaskStatusDTO> getAll() {
         var taskStatuses = taskStatusRepository.findAll();

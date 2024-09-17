@@ -8,9 +8,16 @@ import io.hexlet.code.dto.LabelDTO;
 import io.hexlet.code.dto.LabelUpdateDTO;
 import io.hexlet.code.mapper.LabelMapper;
 import io.hexlet.code.model.Label;
+import io.hexlet.code.model.Task;
+import io.hexlet.code.model.TaskStatus;
+import io.hexlet.code.model.User;
 import io.hexlet.code.repository.LabelRepository;
+import io.hexlet.code.repository.TaskRepository;
+import io.hexlet.code.repository.TaskStatusRepository;
+import io.hexlet.code.repository.UserRepository;
 import org.assertj.core.api.Assertions;
 import org.instancio.Instancio;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -21,6 +28,7 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.nio.charset.StandardCharsets;
@@ -64,11 +72,6 @@ public class LabelsControllerTest {
 
     @BeforeEach
     public void setup() {
-        mockMvc = MockMvcBuilders.webAppContextSetup(wac)
-                .defaultResponseCharacterEncoding(StandardCharsets.UTF_8)
-                .apply(springSecurity())
-                .build();
-
         token = jwt().jwt(builder -> builder.subject("hexlet@example.com"));
 
         testLabel = Instancio.of(modelGenerator.getLabelModel()).create();
@@ -78,7 +81,7 @@ public class LabelsControllerTest {
 
     @Test
     public void testIndex() throws Exception {
-        var response = mockMvc.perform(get("/api/labels").with(jwt()))
+        var response = mockMvc.perform(get("/api/labels").with(token))
                 .andExpect(status().isOk())
                 .andReturn()
                 .getResponse();
@@ -97,7 +100,7 @@ public class LabelsControllerTest {
 
     @Test
     public void testShow() throws Exception {
-        var response = mockMvc.perform(get("/api/labels/" + testLabel.getId()).with(jwt()))
+        var response = mockMvc.perform(get("/api/labels/" + testLabel.getId()).with(token))
                 .andExpect(status().isOk())
                 .andReturn();
         var body = response.getResponse().getContentAsString();
@@ -139,7 +142,7 @@ public class LabelsControllerTest {
 
     @Test
     public void testDestroy() throws Exception {
-        var request = delete("/api/labels/" + testLabel.getId()).with(jwt());
+        var request = delete("/api/labels/" + testLabel.getId()).with(token);
         mockMvc.perform(request)
                 .andExpect(status().isNoContent());
         assertThat(labelRepository.existsById(testLabel.getId())).isEqualTo(false);

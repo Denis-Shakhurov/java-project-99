@@ -27,6 +27,7 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.nio.charset.StandardCharsets;
@@ -45,6 +46,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
+@Transactional
 @AutoConfigureMockMvc
 public class TasksControllerTest {
 
@@ -110,7 +112,7 @@ public class TasksControllerTest {
 
     @Test
     public void testIndex() throws Exception {
-        var response = mockMvc.perform(get("/api/tasks").with(jwt()))
+        var response = mockMvc.perform(get("/api/tasks").with(token))
                 .andExpect(status().isOk())
                 .andReturn()
                 .getResponse();
@@ -138,7 +140,7 @@ public class TasksControllerTest {
 
     @Test
     public void testShow() throws Exception {
-        var response = mockMvc.perform(get("/api/tasks/" + testTask.getId()).with(jwt()))
+        var response = mockMvc.perform(get("/api/tasks/" + testTask.getId()).with(token))
                 .andExpect(status().isOk())
                 .andReturn();
         var body = response.getResponse().getContentAsString();
@@ -182,7 +184,7 @@ public class TasksControllerTest {
 
     @Test
     public void testDestroy() throws Exception {
-        var request = delete("/api/tasks/" + testTask.getId()).with(jwt());
+        var request = delete("/api/tasks/" + testTask.getId()).with(token);
         mockMvc.perform(request)
                 .andExpect(status().isNoContent());
         assertThat(taskRepository.existsById(testTask.getId())).isEqualTo(false);

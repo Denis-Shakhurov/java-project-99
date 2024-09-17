@@ -5,24 +5,18 @@ import io.hexlet.code.dto.UserDTO;
 import io.hexlet.code.dto.UserUpdateDTO;
 import io.hexlet.code.exception.ResourceNotFoundException;
 import io.hexlet.code.mapper.UserMapper;
-import io.hexlet.code.repository.TaskRepository;
 import io.hexlet.code.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class UserService {
 
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private TaskRepository taskRepository;
-
-    @Autowired
-    private UserMapper userMapper;
+    private final UserRepository userRepository;
+    private final UserMapper userMapper;
 
     public List<UserDTO> getAll() {
         var users = userRepository.findAll();

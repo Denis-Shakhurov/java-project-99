@@ -6,19 +6,18 @@ import io.hexlet.code.dto.LabelUpdateDTO;
 import io.hexlet.code.exception.ResourceNotFoundException;
 import io.hexlet.code.mapper.LabelMapper;
 import io.hexlet.code.repository.LabelRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class LabelService {
 
-    @Autowired
-    private LabelRepository labelRepository;
+    private final LabelRepository labelRepository;
 
-    @Autowired
-    private LabelMapper labelMapper;
+    private final LabelMapper labelMapper;
 
     public List<LabelDTO> getAll() {
         var labels = labelRepository.findAll();
