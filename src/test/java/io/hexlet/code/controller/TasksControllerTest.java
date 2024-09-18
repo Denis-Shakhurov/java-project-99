@@ -171,8 +171,7 @@ public class TasksControllerTest {
         var data = new TaskUpdateDTO();
         data.setTitle(JsonNullable.of("Update"));
 
-        var request = put("/api/tasks/" + testTask.getId())
-                .with(token)
+        var request = put("/api/tasks/" + testTask.getId()).with(jwt())
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(om.writeValueAsString(data));
         mockMvc.perform(request)

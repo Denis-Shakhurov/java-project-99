@@ -145,7 +145,7 @@ public class TaskStatusesControllerTest {
 
     @Test
     public void testDestroy() throws Exception {
-        var request = delete("/api/task_statuses/" + testTaskStatus.getId()).with(jwt());
+        var request = delete("/api/task_statuses/{id}", testTaskStatus.getId()).with(jwt());
         mockMvc.perform(request)
                 .andExpect(status().isNoContent());
         assertThat(taskStatusRepository.existsById(testTaskStatus.getId())).isEqualTo(false);
