@@ -86,7 +86,7 @@ public class TaskStatusesControllerTest {
                 .getResponse();
         var body = response.getContentAsString();
 
-        List<TaskStatusDTO> taskStatusDTOS = om.readValue(body, new TypeReference<>(){});
+        List<TaskStatusDTO> taskStatusDTOS = om.readValue(body, new TypeReference<>() { });
 
         var actual = taskStatusDTOS.stream().map(taskStatusMapper::map).toList();
         var excepted = taskStatusRepository.findAll();
