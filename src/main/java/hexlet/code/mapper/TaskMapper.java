@@ -38,28 +38,28 @@ public abstract class TaskMapper {
     @Mapping(target = "taskStatus.slug", source = "slug")
     @Mapping(target = "name", source = "title")
     @Mapping(target = "description", source = "content")
-    @Mapping(target = "labels", source = "labelIds")
+    @Mapping(target = "labels", source = "taskLabelIds")
     public abstract Task map(TaskDTO dto);
 
     @Mapping(target = "assignee", source = "assigneeId")
     @Mapping(target = "taskStatus", source = "slug")
     @Mapping(target = "name", source = "title")
     @Mapping(target = "description", source = "content")
-    @Mapping(target = "labels", source = "labelIds")
+    @Mapping(target = "labels", source = "taskLabelIds")
     public abstract Task map(TaskCreateDTO dto);
 
     @Mapping(source = "assignee.id", target = "assigneeId")
     @Mapping(source = "taskStatus.slug", target = "slug")
     @Mapping(source = "name", target = "title")
     @Mapping(source = "description", target = "content")
-    @Mapping(source = "labels", target = "labelIds")
+    @Mapping(source = "labels", target = "taskLabelIds")
     public abstract TaskDTO map(Task model);
 
     @Mapping(target = "assignee", source = "assigneeId")
     @Mapping(target = "taskStatus", source = "slug")
     @Mapping(target = "name", source = "title")
     @Mapping(target = "description", source = "content")
-    @Mapping(target = "labels", source = "labelIds")
+    @Mapping(target = "labels", source = "taskLabelIds")
     public abstract void update(TaskUpdateDTO dto, @MappingTarget Task model);
 
     public Set<Long> labelsToLong(Set<Label> labels) {
@@ -71,8 +71,8 @@ public abstract class TaskMapper {
 
     }
 
-    public Set<Label> longToLabel(Set<Long> labelIds) {
-        return labelIds.stream()
+    public Set<Label> longToLabel(Set<Long> taskLabelIds) {
+        return taskLabelIds.stream()
                 .map(id -> labelRepository.findById(id).orElseThrow())
                 .collect(Collectors.toSet());
     }
