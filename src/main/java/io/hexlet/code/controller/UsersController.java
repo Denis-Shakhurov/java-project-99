@@ -5,7 +5,7 @@ import io.hexlet.code.dto.UserDTO;
 import io.hexlet.code.dto.UserUpdateDTO;
 import io.hexlet.code.service.UserService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -22,11 +22,11 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api")
 public class UsersController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
 
     @GetMapping(path = "/users")
     public ResponseEntity<List<UserDTO>> index() {
