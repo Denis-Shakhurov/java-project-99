@@ -5,12 +5,10 @@ import io.hexlet.code.dto.TaskStatusCreateDTO;
 import io.hexlet.code.model.User;
 import io.hexlet.code.repository.LabelRepository;
 import io.hexlet.code.repository.TaskStatusRepository;
-import io.hexlet.code.repository.UserRepository;
 import io.hexlet.code.service.CustomUserDetailsService;
 import io.hexlet.code.service.LabelService;
 import io.hexlet.code.service.TaskStatusService;
-import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
@@ -19,26 +17,14 @@ import java.util.List;
 import java.util.Map;
 
 @Component
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class DataInitializer implements ApplicationRunner {
 
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private TaskStatusRepository taskStatusRepository;
-
-    @Autowired
-    private CustomUserDetailsService userDetailsService;
-
-    @Autowired
-    private TaskStatusService taskStatusService;
-
-    @Autowired
-    private LabelService labelService;
-
-    @Autowired
-    private LabelRepository labelRepository;
+    private final TaskStatusRepository taskStatusRepository;
+    private final CustomUserDetailsService userDetailsService;
+    private final TaskStatusService taskStatusService;
+    private final LabelService labelService;
+    private final LabelRepository labelRepository;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
