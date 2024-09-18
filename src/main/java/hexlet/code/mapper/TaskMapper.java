@@ -1,13 +1,13 @@
-package io.hexlet.code.mapper;
+package hexlet.code.mapper;
 
-import io.hexlet.code.dto.TaskCreateDTO;
-import io.hexlet.code.dto.TaskDTO;
-import io.hexlet.code.dto.TaskUpdateDTO;
-import io.hexlet.code.model.Label;
-import io.hexlet.code.model.Task;
-import io.hexlet.code.model.TaskStatus;
-import io.hexlet.code.repository.LabelRepository;
-import io.hexlet.code.repository.TaskStatusRepository;
+import hexlet.code.dto.TaskCreateDTO;
+import hexlet.code.dto.TaskDTO;
+import hexlet.code.dto.TaskUpdateDTO;
+import hexlet.code.model.Label;
+import hexlet.code.model.Task;
+import hexlet.code.model.TaskStatus;
+import hexlet.code.repository.LabelRepository;
+import hexlet.code.repository.TaskStatusRepository;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;

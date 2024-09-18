@@ -1,13 +1,13 @@
-package io.hexlet.code.component;
+package hexlet.code.component;
 
-import io.hexlet.code.dto.LabelCreateDTO;
-import io.hexlet.code.dto.TaskStatusCreateDTO;
-import io.hexlet.code.model.User;
-import io.hexlet.code.repository.LabelRepository;
-import io.hexlet.code.repository.TaskStatusRepository;
-import io.hexlet.code.service.CustomUserDetailsService;
-import io.hexlet.code.service.LabelService;
-import io.hexlet.code.service.TaskStatusService;
+import hexlet.code.dto.LabelCreateDTO;
+import hexlet.code.dto.TaskStatusCreateDTO;
+import hexlet.code.model.User;
+import hexlet.code.repository.LabelRepository;
+import hexlet.code.repository.TaskStatusRepository;
+import hexlet.code.service.CustomUserDetailsService;
+import hexlet.code.service.LabelService;
+import hexlet.code.service.TaskStatusService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;

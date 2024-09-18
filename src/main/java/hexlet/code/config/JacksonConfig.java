@@ -1,4 +1,4 @@
-package io.hexlet.code.config;
+package hexlet.code.config;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import org.openapitools.jackson.nullable.JsonNullableModule;

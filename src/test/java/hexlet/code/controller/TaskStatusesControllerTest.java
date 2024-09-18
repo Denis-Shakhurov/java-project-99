@@ -1,14 +1,14 @@
-package io.hexlet.code.controller;
+package hexlet.code.controller;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.hexlet.code.controller.util.ModelGenerator;
-import io.hexlet.code.dto.TaskStatusCreateDTO;
-import io.hexlet.code.dto.TaskStatusDTO;
-import io.hexlet.code.dto.TaskStatusUpdateDTO;
-import io.hexlet.code.mapper.TaskStatusMapper;
-import io.hexlet.code.model.TaskStatus;
-import io.hexlet.code.repository.TaskStatusRepository;
+import hexlet.code.controller.util.ModelGenerator;
+import hexlet.code.dto.TaskStatusCreateDTO;
+import hexlet.code.dto.TaskStatusDTO;
+import hexlet.code.dto.TaskStatusUpdateDTO;
+import hexlet.code.mapper.TaskStatusMapper;
+import hexlet.code.model.TaskStatus;
+import hexlet.code.repository.TaskStatusRepository;
 import org.assertj.core.api.Assertions;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.BeforeEach;

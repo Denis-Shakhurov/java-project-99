@@ -1,11 +1,11 @@
-package io.hexlet.code.service;
+package hexlet.code.service;
 
-import io.hexlet.code.dto.LabelCreateDTO;
-import io.hexlet.code.dto.LabelDTO;
-import io.hexlet.code.dto.LabelUpdateDTO;
-import io.hexlet.code.exception.ResourceNotFoundException;
-import io.hexlet.code.mapper.LabelMapper;
-import io.hexlet.code.repository.LabelRepository;
+import hexlet.code.dto.LabelCreateDTO;
+import hexlet.code.dto.LabelDTO;
+import hexlet.code.dto.LabelUpdateDTO;
+import hexlet.code.exception.ResourceNotFoundException;
+import hexlet.code.mapper.LabelMapper;
+import hexlet.code.repository.LabelRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

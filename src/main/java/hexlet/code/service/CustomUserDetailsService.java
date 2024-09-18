@@ -1,7 +1,7 @@
-package io.hexlet.code.service;
+package hexlet.code.service;
 
-import io.hexlet.code.model.User;
-import io.hexlet.code.repository.UserRepository;
+import hexlet.code.model.User;
+import hexlet.code.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

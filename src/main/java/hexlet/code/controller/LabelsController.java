@@ -1,9 +1,9 @@
-package io.hexlet.code.controller;
+package hexlet.code.controller;
 
-import io.hexlet.code.dto.LabelCreateDTO;
-import io.hexlet.code.dto.LabelDTO;
-import io.hexlet.code.dto.LabelUpdateDTO;
-import io.hexlet.code.service.LabelService;
+import hexlet.code.dto.LabelCreateDTO;
+import hexlet.code.dto.LabelDTO;
+import hexlet.code.dto.LabelUpdateDTO;
+import hexlet.code.service.LabelService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

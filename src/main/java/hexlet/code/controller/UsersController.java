@@ -1,9 +1,9 @@
-package io.hexlet.code.controller;
+package hexlet.code.controller;
 
-import io.hexlet.code.dto.UserCreateDTO;
-import io.hexlet.code.dto.UserDTO;
-import io.hexlet.code.dto.UserUpdateDTO;
-import io.hexlet.code.service.UserService;
+import hexlet.code.dto.UserCreateDTO;
+import hexlet.code.dto.UserDTO;
+import hexlet.code.dto.UserUpdateDTO;
+import hexlet.code.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

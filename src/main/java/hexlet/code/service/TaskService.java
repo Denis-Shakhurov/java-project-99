@@ -1,13 +1,13 @@
-package io.hexlet.code.service;
+package hexlet.code.service;
 
-import io.hexlet.code.dto.TaskCreateDTO;
-import io.hexlet.code.dto.TaskDTO;
-import io.hexlet.code.dto.TaskParamDTO;
-import io.hexlet.code.dto.TaskUpdateDTO;
-import io.hexlet.code.exception.ResourceNotFoundException;
-import io.hexlet.code.mapper.TaskMapper;
-import io.hexlet.code.repository.TaskRepository;
-import io.hexlet.code.specification.TaskSpecification;
+import hexlet.code.dto.TaskCreateDTO;
+import hexlet.code.dto.TaskDTO;
+import hexlet.code.dto.TaskParamDTO;
+import hexlet.code.dto.TaskUpdateDTO;
+import hexlet.code.exception.ResourceNotFoundException;
+import hexlet.code.mapper.TaskMapper;
+import hexlet.code.repository.TaskRepository;
+import hexlet.code.specification.TaskSpecification;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

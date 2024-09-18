@@ -1,14 +1,14 @@
-package io.hexlet.code.controller;
+package hexlet.code.controller;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.hexlet.code.controller.util.ModelGenerator;
-import io.hexlet.code.dto.LabelCreateDTO;
-import io.hexlet.code.dto.LabelDTO;
-import io.hexlet.code.dto.LabelUpdateDTO;
-import io.hexlet.code.mapper.LabelMapper;
-import io.hexlet.code.model.Label;
-import io.hexlet.code.repository.LabelRepository;
+import hexlet.code.controller.util.ModelGenerator;
+import hexlet.code.dto.LabelCreateDTO;
+import hexlet.code.dto.LabelDTO;
+import hexlet.code.dto.LabelUpdateDTO;
+import hexlet.code.mapper.LabelMapper;
+import hexlet.code.model.Label;
+import hexlet.code.repository.LabelRepository;
 import org.assertj.core.api.Assertions;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.BeforeEach;

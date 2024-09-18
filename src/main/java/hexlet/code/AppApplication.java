@@ -1,4 +1,4 @@
-package io.hexlet.code;
+package hexlet.code;
 
 import net.datafaker.Faker;
 import org.springframework.boot.SpringApplication;

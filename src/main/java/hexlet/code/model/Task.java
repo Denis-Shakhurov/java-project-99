@@ -1,4 +1,4 @@
-package io.hexlet.code.model;
+package hexlet.code.model;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;

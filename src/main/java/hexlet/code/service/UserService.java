@@ -1,11 +1,11 @@
-package io.hexlet.code.service;
+package hexlet.code.service;
 
-import io.hexlet.code.dto.UserCreateDTO;
-import io.hexlet.code.dto.UserDTO;
-import io.hexlet.code.dto.UserUpdateDTO;
-import io.hexlet.code.exception.ResourceNotFoundException;
-import io.hexlet.code.mapper.UserMapper;
-import io.hexlet.code.repository.UserRepository;
+import hexlet.code.dto.UserCreateDTO;
+import hexlet.code.dto.UserDTO;
+import hexlet.code.dto.UserUpdateDTO;
+import hexlet.code.exception.ResourceNotFoundException;
+import hexlet.code.mapper.UserMapper;
+import hexlet.code.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

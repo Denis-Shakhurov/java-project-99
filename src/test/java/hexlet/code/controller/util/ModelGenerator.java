@@ -1,9 +1,9 @@
-package io.hexlet.code.controller.util;
+package hexlet.code.controller.util;
 
-import io.hexlet.code.model.Label;
-import io.hexlet.code.model.Task;
-import io.hexlet.code.model.TaskStatus;
-import io.hexlet.code.model.User;
+import hexlet.code.model.Label;
+import hexlet.code.model.Task;
+import hexlet.code.model.TaskStatus;
+import hexlet.code.model.User;
 import jakarta.annotation.PostConstruct;
 import lombok.Getter;
 import net.datafaker.Faker;

@@ -1,4 +1,4 @@
-package io.hexlet.code.model;
+package hexlet.code.model;
 
 public interface BaseEntity {
 }

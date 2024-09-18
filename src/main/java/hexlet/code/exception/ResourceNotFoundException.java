@@ -1,4 +1,4 @@
-package io.hexlet.code.exception;
+package hexlet.code.exception;
 
 public class ResourceNotFoundException extends RuntimeException {
 

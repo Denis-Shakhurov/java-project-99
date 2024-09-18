@@ -1,4 +1,4 @@
-package io.hexlet.code.dto;
+package hexlet.code.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.Size;

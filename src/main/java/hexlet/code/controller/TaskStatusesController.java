@@ -1,9 +1,9 @@
-package io.hexlet.code.controller;
+package hexlet.code.controller;
 
-import io.hexlet.code.dto.TaskStatusCreateDTO;
-import io.hexlet.code.dto.TaskStatusDTO;
-import io.hexlet.code.dto.TaskStatusUpdateDTO;
-import io.hexlet.code.service.TaskStatusService;
+import hexlet.code.dto.TaskStatusCreateDTO;
+import hexlet.code.dto.TaskStatusDTO;
+import hexlet.code.dto.TaskStatusUpdateDTO;
+import hexlet.code.service.TaskStatusService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

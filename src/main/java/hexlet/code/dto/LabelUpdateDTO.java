@@ -1,4 +1,4 @@
-package io.hexlet.code.dto;
+package hexlet.code.dto;
 
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
