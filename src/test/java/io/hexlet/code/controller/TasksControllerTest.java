@@ -94,7 +94,7 @@ public class TasksControllerTest {
 
         token = jwt().jwt(builder -> builder.subject("hexlet@example.com"));
 
-        testTask= Instancio.of(modelGenerator.getTaskModel()).create();
+        testTask = Instancio.of(modelGenerator.getTaskModel()).create();
         testTaskStatus = Instancio.of(modelGenerator.getTaskStatusModel()).create();
         testUser = Instancio.of(modelGenerator.getUserModel()).create();
         testLabel = Instancio.of(modelGenerator.getLabelModel()).create();
@@ -118,7 +118,7 @@ public class TasksControllerTest {
                 .getResponse();
         var body = response.getContentAsString();
 
-        List<TaskDTO> taskDTOS = om.readValue(body, new TypeReference<>() {});
+        List<TaskDTO> taskDTOS = om.readValue(body, new TypeReference<>(){});
 
         var actual = taskDTOS.stream().map(taskMapper::map).toList();
         var excepted = taskRepository.findAll();
