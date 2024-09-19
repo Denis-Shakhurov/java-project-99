@@ -10,7 +10,6 @@ import net.datafaker.Faker;
 import org.instancio.Instancio;
 import org.instancio.Model;
 import org.instancio.Select;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Getter
@@ -20,9 +19,7 @@ public class ModelGenerator {
     private Model<Task> taskModel;
     private Model<User> userModel;
     private Model<TaskStatus> taskStatusModel;
-
-    @Autowired
-    private Faker faker;
+    private final Faker faker = new Faker();
 
     @PostConstruct
     public void init() {
