@@ -97,7 +97,7 @@ public class TaskStatusesControllerTest {
 
     @Test
     public void testShow() throws Exception {
-        var response = mockMvc.perform(get("/api/task_statuses/" + testTaskStatus.getId()).with(jwt()))
+        var response = mockMvc.perform(get("/api/task_statuses/" + testTaskStatus.getId()).with(token))
                 .andExpect(status().isOk())
                 .andReturn();
         var body = response.getResponse().getContentAsString();
