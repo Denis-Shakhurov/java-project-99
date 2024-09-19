@@ -37,6 +37,7 @@ import java.util.Set;
 
 import static net.javacrumbs.jsonunit.assertj.JsonAssertions.assertThatJson;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.jwt;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
@@ -164,6 +165,12 @@ public class TasksControllerTest {
                 .content(om.writeValueAsString(data));
         mockMvc.perform(request)
                 .andExpect(status().isCreated());
+
+        var task = taskRepository.findByName(data.getTitle()).get();
+
+        assertNotNull(task);
+        assertThat(task.getName()).isEqualTo(data.getTitle());
+        assertThat(task.getTaskStatus().getSlug()).isEqualTo(data.getSlug());
     }
 
     @Test
@@ -183,7 +190,7 @@ public class TasksControllerTest {
 
     @Test
     public void testDestroy() throws Exception {
-        var request = delete("/api/tasks/" + testTask.getId()).with(token);
+        var request = delete("/api/tasks/" + testTask.getId()).with(jwt());
         mockMvc.perform(request)
                 .andExpect(status().isNoContent());
         assertThat(taskRepository.existsById(testTask.getId())).isEqualTo(false);
