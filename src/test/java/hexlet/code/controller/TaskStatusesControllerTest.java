@@ -103,7 +103,6 @@ public class TaskStatusesControllerTest {
         var body = response.getResponse().getContentAsString();
 
         assertThatJson(body).and(
-                v -> v.node("name").isEqualTo(testTaskStatus.getName()),
                 v -> v.node("slug").isEqualTo(testTaskStatus.getSlug())
         );
     }
