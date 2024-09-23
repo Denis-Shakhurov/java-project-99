@@ -5,6 +5,7 @@ import hexlet.code.dto.TaskStatusCreateDTO;
 import hexlet.code.model.User;
 import hexlet.code.repository.LabelRepository;
 import hexlet.code.repository.TaskStatusRepository;
+import hexlet.code.repository.UserRepository;
 import hexlet.code.service.CustomUserDetailsService;
 import hexlet.code.service.LabelService;
 import hexlet.code.service.TaskStatusService;
@@ -25,14 +26,17 @@ public class DataInitializer implements ApplicationRunner {
     private final TaskStatusService taskStatusService;
     private final LabelService labelService;
     private final LabelRepository labelRepository;
+    private final UserRepository userRepository;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        var email = "hexlet@example.com";
-        var userData = new User();
-        userData.setEmail(email);
-        userData.setPasswordDigest("qwerty");
-        userDetailsService.createUser(userData);
+        if(userRepository.findByEmail("hexlet@example.com").isEmpty()) {
+            var email = "hexlet@example.com";
+            var userData = new User();
+            userData.setEmail(email);
+            userData.setPasswordDigest("qwerty");
+            userDetailsService.createUser(userData);
+        }
 
         Map<String, String> taskStatuses = Map.of(
                 "Draft", "draft",
