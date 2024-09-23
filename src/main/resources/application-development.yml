@@ -10,7 +10,7 @@ spring:
       enabled: true
     security:
       headers:
-        frame=false:
+        frame: false
 debug: true
 logging:
   level:
