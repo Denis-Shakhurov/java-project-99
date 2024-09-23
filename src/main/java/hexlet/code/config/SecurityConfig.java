@@ -16,6 +16,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 
@@ -34,20 +35,20 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http,
                                                    HandlerMappingIntrospector introspector) throws Exception {
         // По умолчанию все запрещено
-        //MvcRequestMatcher.Builder mvcMatcherBuilder = new MvcRequestMatcher.Builder(introspector);
+        MvcRequestMatcher.Builder mvcMatcherBuilder = new MvcRequestMatcher.Builder(introspector);
         return http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         // Разрешаем доступ только к /login, чтобы аутентифицироваться и получить токен
                         .requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).permitAll()
-                        .requestMatchers("/").permitAll()
-                        .requestMatchers("/index.html").permitAll()
-                        .requestMatchers("/assets/**").permitAll()
-                        .requestMatchers("/welcome").permitAll()
-                        .requestMatchers("/api/login").permitAll()
-                        .requestMatchers("/v3/api-docs/**").permitAll()
-                        .requestMatchers("/swagger-ui/**").permitAll()
-                        .requestMatchers("/swagger-ui/index.html").permitAll()
+                        .requestMatchers(mvcMatcherBuilder.pattern("/")).permitAll()
+                        .requestMatchers(mvcMatcherBuilder.pattern("/index.html")).permitAll()
+                        .requestMatchers(mvcMatcherBuilder.pattern("/assets/**")).permitAll()
+                        .requestMatchers(mvcMatcherBuilder.pattern("/welcome")).permitAll()
+                        .requestMatchers(mvcMatcherBuilder.pattern("/api/login")).permitAll()
+                        .requestMatchers(mvcMatcherBuilder.pattern("/v3/api-docs/**")).permitAll()
+                        .requestMatchers(mvcMatcherBuilder.pattern("/swagger-ui/**")).permitAll()
+                        .requestMatchers(mvcMatcherBuilder.pattern("/swagger-ui/index.html")).permitAll()
                         .anyRequest().authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .oauth2ResourceServer((rs) -> rs.jwt((jwt) -> jwt.decoder(jwtDecoder)))
