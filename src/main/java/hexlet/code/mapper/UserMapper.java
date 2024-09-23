@@ -40,4 +40,12 @@ public abstract class UserMapper {
         var password = data.getPassword();
         data.setPassword(encoder.encode(password));
     }
+
+    @BeforeMapping
+    public void encryptPassword(UserUpdateDTO dto, @MappingTarget User model) {
+        if (dto.getPassword() != null && dto.getPassword().isPresent()) {
+            String password = dto.getPassword().get();
+            model.setPasswordDigest(encoder.encode(password));
+        }
+    }
 }
