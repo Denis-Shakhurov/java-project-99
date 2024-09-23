@@ -79,7 +79,7 @@ public class UsersControllerTest {
     @Test
     public void testIndex() throws Exception {
 
-        var response = mockMvc.perform(get("/api/users").with(jwt()))
+        var response = mockMvc.perform(get("/api/users").with(token))
                 .andExpect(status().isOk())
                 .andReturn()
                 .getResponse();
@@ -96,7 +96,7 @@ public class UsersControllerTest {
     @Test
     public void testShow() throws Exception {
 
-        var request = get("/api/users/" + testUser.getId()).with(jwt());
+        var request = get("/api/users/" + testUser.getId()).with(token);
         var result = mockMvc.perform(request)
                 .andExpect(status().isOk())
                 .andReturn();
