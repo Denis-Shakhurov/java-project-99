@@ -6,6 +6,7 @@ build/
 .idea/
 amplicode.xml
 app/
+node_modules
 
 ### IntelliJ IDEA ###
 .idea/modules.xml
